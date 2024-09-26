@@ -1,0 +1,22 @@
+# Binarios
+*.exe
+*.dll
+*.pdb
+*.so
+*.dylib
+
+# Directorios generados
+*bin/
+*obj/
+
+# Archivos de usuario específicos
+*.user
+*.suo
+*.sln.docstates
+
+# Archivos de configuración
+*.DS_Store
+*.vscode/
+*.vs/
+*.suo
+*.user
