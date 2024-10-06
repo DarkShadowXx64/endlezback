@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Dtos.User
+﻿namespace Core.Dtos.User
 {
     public class UserCreateDto
     {
-
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public bool EmailConfirmed { get; set; }
-        public int? ProfileId { get; set; }
-       // public Guid? CompanyId { get; set; }
-
+        public Guid ProfileId { get; set; }
     }
 }

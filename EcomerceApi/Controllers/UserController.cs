@@ -26,9 +26,7 @@ namespace EcomerceApi.Controllers
             _mapper = mapper;
 
         }
-
-
-
+        
         [HttpGet]
         public async Task<ActionResult<UserResponse>> GetAll()
         {
@@ -46,8 +44,7 @@ namespace EcomerceApi.Controllers
             }
             return Ok(_response);
         }
-
-
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<UserResponse>> GetUserById(Guid id)
         {
@@ -67,8 +64,6 @@ namespace EcomerceApi.Controllers
             }
             return Ok(_response);
         }
-
-
 
         [HttpPost]
         public async Task<ActionResult<UserResponse>> Post(UserCreateDto user)
@@ -119,14 +114,13 @@ namespace EcomerceApi.Controllers
 
             return _response;
         }
-
-
-        [HttpDelete("softdelete/{id}")]
+        
+        [HttpDelete("{id}")]
         public async Task<UserResponse> SoftDeleteUser(Guid id)
         {
             try
             {
-                await _userRepository.SoftDeleteByGuid(id);
+                await _userRepository.Delete(id);
                 _response.Message = "Se eliminó el usuario";
             }
             catch (Exception ex)

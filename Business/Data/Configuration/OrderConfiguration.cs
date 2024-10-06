@@ -28,19 +28,8 @@ namespace Business.Data.Configuration
 
             builder.Property(o => o.OrderStatusId); // El estado de la orden se mapea automáticamente
 
-            builder.Property(o => o.Enabled); // Habilitado/deshabilitado se mapea automáticamente
-
-            builder.Property(o => o.IsDeleted); // Indicador de eliminación se mapea automáticamente
-
             builder.Property(o => o.CreatedDate)
                 .IsRequired(); // Fecha de creación de la orden es requerida
-
-            builder.Property(o => o.ChangedDate)
-                .IsRequired(); // Fecha de modificación de la orden es requerida
-
-            builder.Property(o => o.DeletedDate)
-                .IsRequired(); // Fecha de eliminación de la orden es requerida
-            
 
             builder.HasOne(o => o.User)
                 .WithMany()

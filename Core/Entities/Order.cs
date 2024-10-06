@@ -16,11 +16,7 @@ namespace Core.Entities
         public virtual OrderType OrderType { get; set; }
         public Guid OrderStatusId { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }
-        public bool Enabled { get; set; }
-        public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime ChangedDate { get; set; }
-        public DateTime? DeletedDate { get; set; } // Cambiado a Nullable para permitir valores nulos
 
         public List<OrderProduct> OrderProducts { get; set; }
     }

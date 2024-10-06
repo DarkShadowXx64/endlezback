@@ -28,20 +28,14 @@ namespace Business.Mappings
             CreateMap<ProfileUpdateDto, Core.Entities.Profile>();
 
             CreateMap<UserCreateDto, User>()
-               .ForMember(dest => dest.Id, opt => opt.Ignore()) // Ignora el mapeo de la propiedad Id
-               .ForMember(dest => dest.Enabled, opt => opt.MapFrom(src => true)); // Asigna true a la propiedad Enabled por defecto
-
-            CreateMap<UserUpdateDto, User>()
-                .ForMember(dest => dest.IsDeleted, opt => opt.Ignore());
-
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<UserUpdateDto, User>();
             CreateMap<User, UserDto>()
                  .ForMember(dest => dest.ProfileName, opt => opt.MapFrom(src => src.Profile!.Title))
                  .ReverseMap();
-            
 
-            CreateMap<UserDto, User>()
-                .ForMember(dest => dest.EmailConfirmed, opt => opt.MapFrom(src => true)); // Asignar EmailConfirmed a true por defecto
 
+            CreateMap<UserDto, User>();
 
             CreateMap<CustomerAddressCreateDto, CustomerAddress>();
             CreateMap<CustomerAddressUpdateDto, CustomerAddress>();
@@ -78,14 +72,10 @@ namespace Business.Mappings
 
             // Mapeo de Product a ProductDto
             CreateMap<Product, ProductDto>()
-                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Title))
-                .ForMember(dest => dest.UserCreated, opt => opt.MapFrom(src => $"{src.UserCreated.Name} {src.UserCreated.LastName}"))
-                .ForMember(dest => dest.UserChanged, opt => opt.MapFrom(src =>  $"{src.UserChanged.Name} {src.UserChanged.LastName}"));
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Title));
 
             // Mapeo de ProductCreateDto a Product
-            CreateMap<ProductCreateDto, Product>()
-                     .ForMember(dest => dest.UserChangedId, opt => opt.MapFrom(src => src.UserCreatedId));
-
+            CreateMap<ProductCreateDto, Product>();
 
             // Mapeo de ProductUpdateDto a Product
             CreateMap<ProductUpdateDto, Product>();

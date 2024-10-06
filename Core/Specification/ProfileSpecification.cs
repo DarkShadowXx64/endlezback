@@ -10,7 +10,7 @@ namespace Core.Specification
            
         }
 
-        public ProfileSpecification(int id) : base(x => x.Id == id)
+        public ProfileSpecification(Guid id) : base(x => x.Id == id)
         {
         }
     }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Dtos.CustomerAddress
+﻿namespace Core.Dtos.CustomerAddress
 {
     public class CustomerAddressUpdateDto
     {
@@ -14,9 +8,5 @@ namespace Core.Dtos.CustomerAddress
         public string StreetDetail { get; set; }
         public string Number { get; set; }
         public string Zip { get; set; }
-        public string Reference { get; set; }
-        public bool IsPrincipal { get; set; }
-        public bool Enabled { get; set; }
-
     }
 }

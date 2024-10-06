@@ -117,12 +117,12 @@ namespace EcomerceApi.Controllers
         }
 
 
-        [HttpDelete("softdelete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<OrderTypeResponse> SoftDeleteUser(int id)
         {
             try
             {
-                await _orderTypeRepository.SoftDelete(id);
+                await _orderTypeRepository.Delete(id);
                 _response.Message = "Se eliminó el usuario";
             }
             catch (Exception ex)

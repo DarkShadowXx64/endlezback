@@ -9,12 +9,10 @@ namespace Business.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Profile> builder)
         {
-            
-
             builder.HasKey(p => p.Id);
 
             builder.Property(pi => pi.Id)
-              .ValueGeneratedOnAdd();
+                .HasDefaultValueSql("newid()");
 
             builder.Property(p => p.Title)
                 .HasColumnType("varchar")
@@ -26,8 +24,6 @@ namespace Business.Data.Configuration
                 .HasColumnType("varchar")
                 .HasMaxLength(512)
                 .HasDefaultValue("");
-
-           
         }
     }
 }

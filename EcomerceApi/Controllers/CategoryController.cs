@@ -32,7 +32,6 @@ namespace EcomerceApi.Controllers
             {
 
                 var category = await _categoryRepository.GetAllAsync();
-                category = category.Where(c => !c.IsDeleted).ToList();
                 _response.ListDataObject = _mapper.Map<IReadOnlyList<CategoryDto>>(category);
 
             }
@@ -94,12 +93,12 @@ namespace EcomerceApi.Controllers
         }
 
 
-        [HttpDelete("softdelete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<CategoryResponse> SoftDeleteCategory(Guid id)
         {
             try
             {
-                await _categoryRepository.SoftDeleteByGuid(id);
+                await _categoryRepository.Delete(id);
                 _response.Message = "La categoria se eliminó.";
             }
             catch (Exception ex)

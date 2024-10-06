@@ -5,7 +5,7 @@ namespace Core.Specification
 {
     public class UserSpecification : BaseSpecification<User>
     {
-        public UserSpecification() : base(u => !u.IsDeleted)
+        public UserSpecification()
         {
             AddInclude(p => p.Profile!);
         }

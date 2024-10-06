@@ -14,14 +14,6 @@ namespace Core.Entities
         public string StreetDetail { get; set; }
         public string Number { get; set; }
         public string Zip { get; set; }
-        public string Reference { get; set; }
-        public bool IsPrincipal { get; set; }
-        public bool Enabled { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ChangedDate { get; set; }
-
-        // Navigation property
         public User User { get; set; }
     }
 }

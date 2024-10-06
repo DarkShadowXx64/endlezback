@@ -14,9 +14,5 @@ namespace Core.Dtos.CustomerAddress
         public string StreetDetail { get; set; }
         public string Number { get; set; }
         public string Zip { get; set; }
-        public string Reference { get; set; }
-        public bool IsPrincipal { get; set; }
-
-        
     }
 }
