@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Entities
+namespace Core.Entities;
+
+public class CustomerAddress
 {
-    public class CustomerAddress
-    {
-        public Guid Id { get; set; }
-        public Guid UserId { get; set; }
-        public string Street { get; set; }
-        public string StreetDetail { get; set; }
-        public string Number { get; set; }
-        public string Zip { get; set; }
-        public User User { get; set; }
-    }
+    public Guid Id { get; set; }
+    public required string ZipCode { get; set; }
+    public required string State { get; set; }
+    public required string City { get; set; } // Municipio / Ciudad
+    public required string Neighborhood { get; set; } // Colonia
+    public required string Address1 { get; set; } // Calle y numero
+    public required string Address2 { get; set; } // Datos adicionales
+    public bool Residential { get; set; } // Si es residencial
+    public Guid UserId { get; set; }
+    public User User { get; set; } = null!;
 }

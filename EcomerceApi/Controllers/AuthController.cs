@@ -95,7 +95,8 @@ namespace EcomerceApi.Controllers
                     Name = request.Name,
                     LastName = request.LastName,
                     CreatedDate = DateTime.UtcNow,
-                    ProfileId = customerProfile.Id
+                    ProfileId = customerProfile.Id,
+                    Phone = request.Phone
                 };
                 
                 entity.Password = passwordHasher.HashPassword(entity, entity.Password);

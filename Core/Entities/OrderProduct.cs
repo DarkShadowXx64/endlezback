@@ -11,8 +11,8 @@
         public decimal Discount { get; set; }
 
         // Navigation properties
-        public Order Order { get; set; }
-        public Product Product { get; set; }
+        public Order Order { get; set; } = null!;
+        public Product Product { get; set; } = null!;
 
 
 

@@ -7,17 +7,18 @@ namespace Core.Entities
     {
         public Guid Id { get; set; }
 
-        public Guid UserId { get; set; } // Propiedad para el ID del usuario
-        public virtual User User { get; set; } // Propiedad de navegación
+        public Guid UserId { get; set; }
+        public User User { get; set; } = null!;
 
         public decimal Total { get; set; }
 
         public int OrderTypeId { get; set; }
-        public virtual OrderType OrderType { get; set; }
+        public OrderType OrderType { get; set; } = null!;
         public Guid OrderStatusId { get; set; }
-        public virtual OrderStatus OrderStatus { get; set; }
+        public OrderStatus OrderStatus { get; set; } = null!;
         public DateTime CreatedDate { get; set; }
 
-        public List<OrderProduct> OrderProducts { get; set; }
+        public List<OrderProduct> OrderProducts { get; set; } = [];
+        public Guid ShipmentId { get; set; } // Pakke
     }
 }

@@ -1,4 +1,5 @@
 using Business.JWT;
+using Business.Logic.OrderLogic;
 using Core.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ public static class ServiceContainer
 
         services.AddScoped<IJwtGenerator, JwtTokenGenerator>();
         services.AddScoped<IJwtValidator, JwtValidator>();
+        services.AddScoped<PakkeClient>();
         
         return services;
     }
