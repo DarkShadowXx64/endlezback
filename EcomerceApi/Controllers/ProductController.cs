@@ -4,6 +4,7 @@ using Core.Dtos.Product;
 using Core.Entities;
 using Core.Interface;
 using Core.Specification;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -27,7 +28,26 @@ namespace EcomerceApi.Controllers
             _mapper = mapper;
         }
         
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult<ProductResponse>> GetAll()
+        {
+            try
+            {
+                var products = await _productRepository.GetAllAsync();
+                _response.ListDataObject = _mapper.Map<IReadOnlyList<ProductDto>>(products);
+            }
+            catch (Exception ex)
+            {
+                _response.statusCode = 500;
+                _response.Message = string.Concat(ex.Message, ex.InnerException, ex.StackTrace);
+            }
+
+            return _response;
+        }
+        
         [HttpGet("{ProductId}")]
+        [AllowAnonymous]
         public async Task<ActionResult<ProductResponse>> GetByGuidId(Guid ProductId)
         {
             try
@@ -46,6 +66,7 @@ namespace EcomerceApi.Controllers
         }
         
         [HttpGet("image/{imageName}")]
+        [AllowAnonymous]
         public IActionResult GetProductImage(string imageName)
         {
             var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "images", "products", imageName);

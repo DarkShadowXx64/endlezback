@@ -3,6 +3,7 @@ using Business.Logic.CategoryLogic;
 using Core.Dtos.Category;
 using Core.Entities;
 using Core.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcomerceApi.Controllers
@@ -26,6 +27,7 @@ namespace EcomerceApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<CategoryResponse>> GetAll()
         {
             try
@@ -42,8 +44,30 @@ namespace EcomerceApi.Controllers
             }
             return _response;
         }
-
       
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<CategoryResponse> GetById(Guid id)
+        {
+            try
+            {
+                var category = await _categoryRepository.GetByGuidAsync(id);
+
+                if (category == null)
+                {
+                    _response.statusCode = 404;
+                    _response.Message = "La categoria no se encontró.";
+                    return _response;
+                }
+                _response.DataObject = _mapper.Map<CategoryDto>(category);
+            }
+            catch (Exception ex)
+            {
+                _response.statusCode = 500;
+                _response.Message = string.Concat(ex.Message, ex.InnerException, ex.StackTrace);
+            }
+            return _response;
+        }
 
         [HttpPost]
         public async Task<CategoryResponse> Post(CategoryCreateDto company)
