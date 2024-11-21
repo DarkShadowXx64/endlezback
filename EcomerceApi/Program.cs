@@ -58,10 +58,8 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// ENABLE JWT
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.UseMiddleware<AuthorizationMiddleware>();
-app.UseCors("AllowAll");
 app.Run();
