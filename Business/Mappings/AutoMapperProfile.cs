@@ -22,10 +22,10 @@ namespace Business.Mappings
 
 
          
-            CreateMap<Core.Entities.Profile, ProfileDto>();
-            CreateMap<ProfileDto, Core.Entities.Profile>();
-            CreateMap<ProfileCreateDto, Core.Entities.Profile>();
-            CreateMap<ProfileUpdateDto, Core.Entities.Profile>();
+            CreateMap<Core.Entities.Profiles, ProfileDto>();
+            CreateMap<ProfileDto, Core.Entities.Profiles>();
+            CreateMap<ProfileCreateDto, Core.Entities.Profiles>();
+            CreateMap<ProfileUpdateDto, Core.Entities.Profiles>();
 
             CreateMap<UserCreateDto, User>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());

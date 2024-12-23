@@ -24,24 +24,25 @@ namespace EcomerceApi.Controllers
         private readonly OrderResponse _response;
         private readonly IGenericRepository<User> _userRepository;
         private IMapper _mapper;
-        private PakkeClient _client;
+        // Comentado el uso de PakkeClient
+        // private PakkeClient _client; 
         private readonly EcomerceDbContext _context;
 
         public OrderController(IGenericRepository<Order> orderRepository
             , OrderResponse response
-            , IMapper mapper, PakkeClient client, IGenericRepository<User> userRepository, EcomerceDbContext context)
+            , IMapper mapper, /* PakkeClient client, */ IGenericRepository<User> userRepository, EcomerceDbContext context)
         {
             _orderRepository = orderRepository;
             _response = response;
             _mapper = mapper;
-            _client = client;
+            // Comentado el cliente de Pakke
+            // _client = client;
             _userRepository = userRepository;
             _context = context;
         }
 
-
         [HttpGet]
-        public async Task<ActionResult<OrderResponse>> GetAll(Guid CompanyId, Guid? CustomerId)
+        public async Task<ActionResult<OrderResponse>> GetAll()
         {
             try
             {
@@ -75,43 +76,43 @@ namespace EcomerceApi.Controllers
                 var user = await _context.User.Include(u => u.CustomerAddresses).FirstAsync(u => u.Id == Guid.Parse(userId));
                 var entity = _mapper.Map<Order>(request);
 
-                var pakkeBody = new ShipmentCreateDto
-                {
-                    Parcel = new Parcel
-                    {
-                        Height = 10,
-                        Length = 10,
-                        Weight = 10,
-                        Width = 10
-                    },
-                    AddressFrom = new CustomerAddressDto
-                    {
-                        ZipCode = "12345",
-                        City = "Benito Juarez",
-                        State = "Quinta Roo",
-                        Neighborhood = "12345",
-                        Address1 = "Calle 123",
-                    },
-                    AddressTo = _mapper.Map<CustomerAddressDto>(user.CustomerAddresses.First()),
-                    Sender = new ShipmentContact
-                    {
-                        Name = "Juan",
-                        Email = "correo@correo.com",
-                        Phone1 = "9999999999",
-                    },
-                    Receiver = new ShipmentContact
-                    {
-                        Name = $"{user.Name} {user.LastName}",
-                        Email = user.Email,
-                        Phone1 = user.Phone,
-                        CompanyName = "Endlez"
-                    }
-                };
-                
-                var jsonContent = new StringContent(JsonSerializer.Serialize(pakkeBody), Encoding.UTF8, "application/json");
-                // Hacer la petición POST
-                var response = await _client.PostAsync("shipments", jsonContent);
-                
+                // Comentado todo lo relacionado con Pakke
+                // var pakkeBody = new ShipmentCreateDto
+                // {
+                //     Parcel = new Parcel
+                //     {
+                //         Height = 10,
+                //         Length = 10,
+                //         Weight = 10,
+                //         Width = 10
+                //     },
+                //     AddressFrom = new CustomerAddressDto
+                //     {
+                //         ZipCode = "12345",
+                //         City = "Benito Juarez",
+                //         State = "Quinta Roo",
+                //         Neighborhood = "12345",
+                //         Address1 = "Calle 123",
+                //     },
+                //     AddressTo = _mapper.Map<CustomerAddressDto>(user.CustomerAddresses.First()),
+                //     Sender = new ShipmentContact
+                //     {
+                //         Name = "Juan",
+                //         Email = "correo@correo.com",
+                //         Phone1 = "9999999999",
+                //     },
+                //     Receiver = new ShipmentContact
+                //     {
+                //         Name = $"{user.Name} {user.LastName}",
+                //         Email = user.Email,
+                //         Phone1 = user.Phone,
+                //         CompanyName = "Endlez"
+                //     }
+                // };
+
+                // var jsonContent = new StringContent(JsonSerializer.Serialize(pakkeBody), Encoding.UTF8, "application/json");
+                // // Hacer la petición POST
+                // var response = await _client.PostAsync("shipments", jsonContent);
 
                 var result = await _orderRepository.Insert(entity);
                 _response.DataObject = _mapper.Map<OrderDto>(entity);
@@ -154,7 +155,6 @@ namespace EcomerceApi.Controllers
 
             return _response;
         }
-
 
         [HttpDelete("{id}")]
         public async Task<OrderResponse> SoftDeleteUser(Guid id)

@@ -9,10 +9,10 @@ namespace Core.Dtos.Order
     {
         public Guid Id { get; set; }
         public decimal Total { get; set; }
-        public UserDto User { get; set; }
-        public OrderTypeDto OrderType { get; set; }
-        public OrderStatusDto OrderStatus { get; set; }
+        public UserDto User { get; set; } = null!;
+        public OrderTypeDto OrderType { get; set; } = null!;
+        public OrderStatusDto OrderStatus { get; set; } = null!;
 
-        public List<OrderProduct> OrderProducts { get; set; } = [];
+        public List<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
     }
 }

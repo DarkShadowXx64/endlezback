@@ -10,8 +10,7 @@
         public Guid CategoryId { get; set; }
         public DateTime CreatedDate { get; set; }
         public string? ImagePath { get; set; }
-
         public Category Category { get; set; } = null!;
-
+        public List<string> Sizes { get; set; } = new List<string>(); // Representa las tallas disponibles
     }
 }

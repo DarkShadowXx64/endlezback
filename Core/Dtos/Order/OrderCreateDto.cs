@@ -3,7 +3,7 @@
     public class OrderCreateDto
     {
         
-        public Guid CustomerId { get; set; }
+        public Guid UserId { get; set; }
         public decimal Total { get; set; }
 
         public int OrderTypeId { get; set; }

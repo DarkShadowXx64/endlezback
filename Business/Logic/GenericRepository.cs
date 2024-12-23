@@ -71,8 +71,16 @@ namespace Business.Logic
 
         public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            T? existing = await _context.Set<T>().FindAsync(id);
+            if (existing == null)
+            {
+                throw new ArgumentException($"Entity with ID {id} not found.");
+            }
+
+            _context.Set<T>().Remove(existing);
+            await SaveAsync();
         }
+
 
         public async Task SoftDelete(int id)
         {
